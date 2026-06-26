@@ -1,0 +1,8 @@
+spring.application.name=bookStore
+
+spring.application.security.jwt.secrectKey=myjhbjbgjugbubgu
+spring.application.security.jwt.expirationTime=89000
+
+spring.datasource.url=jdbc:mysql://localhost:3306/bookStore
+spring.datasource.username=root
+spring.datasource.password=root

@@ -1,0 +1,15 @@
+package com.paramita.bookStore.security.config;
+
+import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
+
+@Component
+public class JWTService {
+    private String secrectKey;
+    private Long expirationTime;
+    public String generateToken(UserDetails userDetails) {
+        Jw
+        return;
+    }
+}

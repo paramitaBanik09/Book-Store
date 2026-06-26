@@ -1,0 +1,40 @@
+package com.paramita.bookStore.security.config;
+
+import java.security.Key;
+import java.util.Base64;
+import java.util.Date;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.io.Decoder;
+import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.Keys;
+
+@Component
+public class JWTService {
+	@Value("$application.security.jwt.secrectKey")
+    private String secrectKey;
+	@Value("$application.security.jwt.expirationTime")
+    private String expirationTime;
+    public String generateToken(UserDetails userDetails) {
+    	//userDetails.getAuthorities().stream().
+    	return Jwts.builder().setSubject(userDetails.getUsername())
+    			.setSubject(userDetails.getUsername())
+    			//.setClaims()
+    			.setIssuedAt(new Date())
+    			.setExpiration(new Date(System.currentTimeMillis()+expirationTime))
+    			.signWith(key())
+    			.compact();
+    }
+    
+    public Key key() {
+    	byte[] secrect=Decoders.BASE64.decode(secrectKey);
+    	return Keys.hmacShaKeyFor(secrect);
+    }
+}

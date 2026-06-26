@@ -1,0 +1,5 @@
+package com.paramita.bookStore.user.TO;
+
+public class UserTo {
+
+}

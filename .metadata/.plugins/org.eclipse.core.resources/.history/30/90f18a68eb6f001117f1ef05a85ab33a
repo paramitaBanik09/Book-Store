@@ -1,0 +1,12 @@
+package com.paramita.bookStore.user.service;
+
+import org.springframework.stereotype.Service;
+
+import com.paramita.bookStore.user.TO.LoginReqTo;
+
+@Service
+public class UserService {
+	public void login(LoginReqTo loginReqTo) {
+		
+	}
+}

@@ -1,0 +1,22 @@
+package com.paramita.bookStore.user.service;
+
+import org.springframework.stereotype.Service;
+
+import com.paramita.bookStore.user.TO.LoginReqTo;
+import com.paramita.bookStore.user.TO.UserTo;
+import com.paramita.bookStore.user.repository.UserRepository;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class UserService {
+	private final UserRepository userRepository;
+	public void login(LoginReqTo loginReqTo) {
+		
+	}
+	
+	public UserTo register(UserTo user) {
+		return new UserTo().setEmail(null);
+	}
+}

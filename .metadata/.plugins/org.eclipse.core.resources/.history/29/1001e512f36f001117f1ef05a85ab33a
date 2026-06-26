@@ -1,0 +1,4 @@
+spring.application.name=bookStore
+
+spring.application.security.jwt.secrectKey=myjhbjbgjugbubgu
+spring.application.security.jwt.expirationTime=89000

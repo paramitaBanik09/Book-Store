@@ -1,0 +1,42 @@
+package com.paramita.bookStore.user.service;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import com.paramita.bookStore.user.TO.LoginReqTo;
+import com.paramita.bookStore.user.TO.UserTo;
+import com.paramita.bookStore.user.entity.User;
+import com.paramita.bookStore.user.repository.UserRepository;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class UserService {
+	private final UserRepository userRepository;
+	private final PasswordEncoder passwordEncoder;
+	
+	public void login(LoginReqTo loginReqTo) {
+		
+	}
+	
+	public UserTo register(UserTo user) {
+		/*
+		 * User result = new User().builder() .email(user.getEmail())
+		 * .firstName(user.getFirstName()) .lastName(user.getLastName())
+		 * .password(passwordEncoder.encode(user.getPassword())) .build();
+		 */
+		User result=this.userRepository.save(new User().builder()
+				.email(user.getEmail())
+				.firstName(user.getFirstName())
+				.lastName(user.getLastName())
+				.password(passwordEncoder.encode(user.getPassword()))
+				.build());
+		return new UserTo().builder()
+				.email(result.getEmail())
+				.firstName(result.getFirstName())
+				.lastName(result.getLastName())
+				.password(result.getPassword())
+				.build();
+	}
+}

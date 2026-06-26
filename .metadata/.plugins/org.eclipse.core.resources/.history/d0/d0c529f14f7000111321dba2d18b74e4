@@ -1,0 +1,11 @@
+spring.application.name=bookStore
+
+spring.application.security.jwt.secrectKey=TXlPbmxpbmVCb29rU3RvcmVBcHBsaWNhdGlvbjk3MzA=
+spring.application.security.jwt.expirationTime=890000
+
+spring.datasource.url=jdbc:mysql://localhost:3306/bookStore
+spring.datasource.username=root
+spring.datasource.password=root
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
