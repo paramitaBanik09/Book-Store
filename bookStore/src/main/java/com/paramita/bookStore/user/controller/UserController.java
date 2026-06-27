@@ -1,6 +1,7 @@
 package com.paramita.bookStore.user.controller;
 
 import com.paramita.bookStore.user.TO.LoginReqTo;
+import com.paramita.bookStore.user.TO.LoginResponseTO;
 import com.paramita.bookStore.user.TO.UserTo;
 import com.paramita.bookStore.user.service.UserService;
 
@@ -14,12 +15,12 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("api/v1/user")
+@RequestMapping("${application.baseurl}/user")
 public class UserController {
     private final UserService userService;
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginReqTo loginReqTo){
+    public ResponseEntity<LoginResponseTO> login(@RequestBody LoginReqTo loginReqTo){
         return ResponseEntity.ok(userService.login(loginReqTo));
     }
     

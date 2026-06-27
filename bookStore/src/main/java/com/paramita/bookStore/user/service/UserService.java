@@ -1,6 +1,7 @@
 package com.paramita.bookStore.user.service;
 
 
+import com.paramita.bookStore.user.TO.LoginResponseTO;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -22,12 +23,14 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class UserService {
+	//eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzaGluZ1JAZ21haWwuY29tIiwiaWF0IjoxNzgyNTUzMDA1LCJleHAiOjE3ODI1NTM4OTV9.3AHJu2c3XGX4CULqHnDVcZTHFPBrmY8KYd7mbR09m_I
 	private final UserRepository userRepository;
 	private final PasswordEncoder passwordEncoder;
 	private final AuthenticationManager authenticationManager;
 	private final JWTService jwtService;
 	
-	public String login(LoginReqTo loginReqTo) {
+	public LoginResponseTO login(LoginReqTo loginReqTo) {
+		LoginResponseTO loginResponseTO = new LoginResponseTO();
 		Authentication authenticate;
 		try {
 			authenticate = authenticationManager.authenticate(
@@ -37,10 +40,12 @@ public class UserService {
 				);
 		}catch(AuthenticationException exp){
 			exp.printStackTrace();
-			return "User is not Authenticate";
+			return null;
 		}
 		UserDetails userDetails = (UserDetails)authenticate.getPrincipal();
-		return jwtService.generateToken(userDetails);
+		loginResponseTO.setToken(jwtService.generateToken(userDetails));
+		loginResponseTO.setUsername(userDetails.getUsername());
+		return loginResponseTO;
 		
 	}
 	
